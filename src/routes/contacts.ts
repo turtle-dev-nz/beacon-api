@@ -1,5 +1,5 @@
-import express, { type Request, type Response } from "express";
 import { ContactSource, type ContactCard } from "@prisma/client";
+import express, { type Request, type Response } from "express";
 import prisma from "../config/prisma.js";
 
 const router = express.Router();
