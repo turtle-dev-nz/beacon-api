@@ -1,7 +1,11 @@
-require("dotenv").config({ path: require("path").resolve(__dirname, "../.env") });
-const prisma = require("./config/prisma");
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import "./config/env.js";
+import prisma from "./config/prisma.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function seed() {
   const email = "dev@local.test";

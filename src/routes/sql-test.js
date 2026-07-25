@@ -1,4 +1,4 @@
-const sql = require("mssql");
+import sql from "mssql";
 
 function getConfigFromEnv() {
   const user = process.env.SQL_SERVER_USER;
@@ -66,6 +66,4 @@ async function sqlTestHandler(_req, res) {
   }
 }
 
-module.exports = {
-  sqlTestHandler,
-};
+export { sqlTestHandler };

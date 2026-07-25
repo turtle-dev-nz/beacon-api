@@ -1,10 +1,14 @@
-const express = require("express");
-const multer = require("multer");
-const path = require("path");
-const fs = require("fs");
-const OpenAI = require("openai").default;
+import express from "express";
+import fs from "fs";
+import multer from "multer";
+import OpenAI from "openai";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const router = express.Router();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // --- Storage ---
 const uploadsDir = path.resolve(__dirname, "../../", process.env.UPLOADS_DIR || "uploads");
@@ -104,7 +108,7 @@ router.post("/", upload.single("image"), async (req, res) => {
   if (!process.env.OPEN_AI_API_KEY) {
     return res.status(500).json({
       error: "OpenAI API key is not configured",
-      detail: "Set OPEN_AI_API_KEY in apps/api/.env and restart the API server.",
+      detail: "Set OPEN_AI_API_KEY in api/.env and restart the API server.",
     });
   }
 
@@ -175,4 +179,4 @@ router.post("/", upload.single("image"), async (req, res) => {
   return res.json({ extracted, imageUrl, rawOcrText: ocrText });
 });
 
-module.exports = router;
+export default router;

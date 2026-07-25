@@ -1,20 +1,19 @@
-const express = require("express");
-const prisma = require("../config/prisma");
+import express from "express";
+import prisma from "../config/prisma.js";
 
 const router = express.Router();
 
 router.get("/", async (_req, res) => {
   try {
     const cards = await prisma.card.findMany();
-
-    res.json(["RETURNING CARDS ENDPOINT"]);
+    res.json(cards);
   } catch (error) {
     console.error(error);
 
     res.status(500).json({
-      error: "Failed to retrieve cards" + error,
+      error: "Failed to retrieve cards",
     });
   }
 });
 
-module.exports = router;
+export default router;

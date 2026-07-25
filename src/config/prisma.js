@@ -1,10 +1,11 @@
-const { PrismaClient } = require("@prisma/client");
-const { PrismaPg } = require("@prisma/adapter-pg");
+import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "@prisma/client";
+import "./env.js";
 
 const databaseUrl = process.env.DATABASE_URL;
 
 if (!databaseUrl || typeof databaseUrl !== "string") {
-  throw new Error("DATABASE_URL is missing or invalid. Check apps/api/.env and restart the API server.");
+  throw new Error("DATABASE_URL is missing or invalid. Check api/.env and restart the API server.");
 }
 
 const adapter = new PrismaPg({
@@ -15,4 +16,4 @@ const prisma = new PrismaClient({
   adapter,
 });
 
-module.exports = prisma;
+export default prisma;

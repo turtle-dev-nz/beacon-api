@@ -1,14 +1,16 @@
-const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const path = require("path");
+import cors from "cors";
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+import "./config/env.js";
 
-dotenv.config();
+import cardsRouter from "./routes/cards.js";
+import contactsRouter from "./routes/contacts.js";
+import scanRouter from "./routes/scan.js";
+import { sqlTestHandler } from "./routes/sql-test.js";
 
-const cardsRouter = require("./routes/cards");
-const contactsRouter = require("./routes/contacts");
-const scanRouter = require("./routes/scan");
-const { sqlTestHandler } = require("./routes/sql-test");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = Number.parseInt(process.env.PORT || "4000", 10);

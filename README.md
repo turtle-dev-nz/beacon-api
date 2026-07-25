@@ -1,62 +1,60 @@
-# Business Card Monorepo
+# Beacon API
 
-This repository now contains both the mobile app and the API server.
+Express API server for Beacon business card data.
 
-## Workspace Structure
+## Requirements
 
-- `apps/mobile`: Expo app (SDK 54)
-- `apps/api`: Express API server
+- Node.js 20+
+- PostgreSQL reachable via `DATABASE_URL`
 
-## Install
+## Setup
+
+1. Install dependencies:
 
 ```bash
 npm install
 ```
 
-## Run Mobile App
+2. Create a local env file:
 
 ```bash
-npm run dev:mobile
+copy .env.example .env
 ```
 
-For phone testing on the same network:
+3. Update `.env` with real values, especially `DATABASE_URL`.
+
+## Run
+
+Development (watch mode):
 
 ```bash
-npm run dev:mobile -- --host lan
+npm run dev
 ```
 
-## Run API Server
+Normal start:
 
 ```bash
-npm run dev:api
+npm start
 ```
 
-API defaults to `http://localhost:4000`.
+API default: `http://localhost:4000`
 
-## SQL Server Test
+## Seed Dev User
 
-The API route `GET /api/sql-test` lives in `apps/api/src/routes/sql-test.js`.
+```bash
+npm run seed
+```
 
-Create `apps/api/.env` from `apps/api/.env.example` and set:
+This creates/uses `dev@local.test` and writes `DEV_USER_ID` into `.env`.
 
-- `PORT` (optional, defaults to `4000`)
-- `SQL_SERVER_USER`
-- `SQL_SERVER_PASSWORD`
-- `SQL_SERVER_HOST`
-- `SQL_SERVER_DATABASE`
-- `SQL_SERVER_PORT` (optional, defaults to `1433`)
-- `SQL_SERVER_ENCRYPT` (optional, defaults to `true`)
-- `SQL_SERVER_TRUST_CERT` (optional, defaults to `false`)
+## Routes
 
-In the mobile app, set this before starting Expo (native testing):
-
-- `EXPO_PUBLIC_API_BASE_URL=http://YOUR_COMPUTER_IP:4000`
-
-The API test page in the app (`/api-test`) calls this endpoint.
-
-## Useful Scripts
-
-- `npm run dev:mobile`
-- `npm run dev:api`
-- `npm run start:mobile`
-- `npm run start:api`
+- `GET /api/health`
+- `GET /api/cards`
+- `GET /api/contacts`
+- `GET /api/contacts/:id`
+- `POST /api/contacts`
+- `PUT /api/contacts/:id`
+- `DELETE /api/contacts/:id`
+- `POST /api/scan`
+- `GET /api/sql-test`
