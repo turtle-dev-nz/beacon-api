@@ -31,10 +31,17 @@ Development (watch mode):
 npm run dev
 ```
 
-Normal start:
+Build and start:
 
 ```bash
+npm run build
 npm start
+```
+
+Or run start with an implicit build:
+
+```bash
+npm run build && npm start
 ```
 
 API default: `http://localhost:4000`
@@ -42,10 +49,17 @@ API default: `http://localhost:4000`
 ## Seed Dev User
 
 ```bash
+npm run build
 npm run seed
 ```
 
 This creates/uses `dev@local.test` and writes `DEV_USER_ID` into `.env`.
+
+For local development without a build, you can also run:
+
+```bash
+npm run seed:dev
+```
 
 ## Routes
 

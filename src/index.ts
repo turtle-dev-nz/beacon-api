@@ -1,5 +1,5 @@
 import cors from "cors";
-import express from "express";
+import express, { type Request, type Response } from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import "./config/env.js";
@@ -22,7 +22,7 @@ app.use(express.json());
 const uploadsDir = path.resolve(__dirname, "../", process.env.UPLOADS_DIR || "uploads");
 app.use("/uploads", express.static(uploadsDir));
 
-app.get("/api/health", (_req, res) => {
+app.get("/api/health", (_req: Request, res: Response) => {
   res.json({ ok: true, service: "api", message: "API is running" });
 });
 

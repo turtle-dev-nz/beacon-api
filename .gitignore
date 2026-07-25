@@ -19,3 +19,6 @@ yarn-error.*
 
 # macOS
 .DS_Store
+
+#local development
+/uploads

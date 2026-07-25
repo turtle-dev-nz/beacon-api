@@ -8,12 +8,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 async function seed() {
+  const firebaseUid = "dev-local";
   const email = "dev@local.test";
 
-  let user = await prisma.user.findUnique({ where: { email } });
+  let user = await prisma.user.findUnique({ where: { firebaseUid } });
 
   if (!user) {
-    user = await prisma.user.create({ data: { email } });
+    user = await prisma.user.create({ data: { firebaseUid, email } });
     console.log("Created dev user:", user.id);
   } else {
     console.log("Dev user already exists:", user.id);
