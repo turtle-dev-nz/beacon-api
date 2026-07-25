@@ -1,0 +1,40 @@
+{
+  "firstName": "full",
+  "lastName": "name",
+  "title": "job title",
+  "company": "diamondphotoz",
+  "department": null,
+  "email": "email@website.com",
+  "phone": "+1-234-567-890",
+  "mobile": null,
+  "website": "www.website.com",
+  "address": "123 Main Street",
+  "city": "City",
+  "state": null,
+  "country": null,
+  "postalCode": null,
+  "linkedIn": null,
+  "twitter": null,
+  "instagram": null,
+  "facebook": null,
+  "github": null,
+  "notes": null,
+  "colors": [
+    {
+      "hex": "#00a5e0",
+      "name": "cyan"
+    },
+    {
+      "hex": "#ffffff",
+      "name": "white"
+    },
+    {
+      "hex": "#004d7f",
+      "name": "dark blue"
+    },
+    {
+      "hex": "#e0e0e0",
+      "name": "light gray"
+    }
+  ]
+}

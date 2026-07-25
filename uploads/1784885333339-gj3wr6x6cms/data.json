@@ -1,0 +1,32 @@
+{
+  "firstName": "Jess",
+  "lastName": "Denise",
+  "title": null,
+  "company": "People with Ideas",
+  "department": null,
+  "email": "jess@peoplewithideas.co.nz",
+  "phone": "+64-27-206-0314",
+  "mobile": null,
+  "website": null,
+  "address": null,
+  "city": null,
+  "state": null,
+  "country": "New Zealand",
+  "postalCode": null,
+  "linkedIn": null,
+  "twitter": null,
+  "instagram": null,
+  "facebook": null,
+  "github": null,
+  "notes": null,
+  "colors": [
+    {
+      "hex": "#FFFFFF",
+      "name": "White"
+    },
+    {
+      "hex": "#E0E0E0",
+      "name": "Light Gray"
+    }
+  ]
+}

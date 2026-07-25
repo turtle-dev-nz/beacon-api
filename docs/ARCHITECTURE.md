@@ -107,9 +107,9 @@ Secondary actions:
 Frontend
 
 React Native
-Expo
+Expo SDK 54
 TypeScript
-React Navigation
+Expo Router (file-based navigation)
 TanStack Query
 Zustand
 Axios
@@ -122,8 +122,27 @@ Node
 Express
 PostgreSQL
 Prisma
-Google Cloud Vision OCR
-OpenAI API
+Google Gemini 2.0 Flash (OCR + structured extraction in one step)
+
+LLM Strategy
+
+Gemini 2.0 Flash handles both OCR and structuring in a single multimodal call.
+The mobile app sends the card image to the API, which forwards it to Gemini with a strict JSON schema prompt.
+Gemini returns structured contact JSON directly — no separate OCR step required.
+The LLM is instructed never to invent data; all fields default to null when not visible.
+
+Image Storage
+
+Card images are stored on the API server under the uploads/ directory.
+The file path is saved in the Card.imageUrl field.
+This is suitable for local development and single-machine deployments.
+For production, swap uploads/ for an object store (S3, Cloudflare R2, GCS).
+
+Authentication
+
+Not implemented in the current dev build.
+A DEV_USER_ID environment variable is used to bypass auth for local testing.
+Planned: Google OAuth as primary provider, email/password as fallback (future ADR required).
 
 ---
 

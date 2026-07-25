@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ContactSource {
+  SCAN
+  MANUAL
+  IMPORT
+}
+
+model User {
+  id           String   @id @default(uuid())
+  firebaseUid  String?  @unique
+  email        String?
+  displayName  String?
+  photoUrl     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Cards this user personally owns/publishes
+  profileCards ProfileCard[]
+
+  // Contacts this user has saved from scanning/importing
+  contacts     ContactCard[]
+}
+
+model ProfileCard {
+  id           String   @id @default(uuid())
+  ownerUserId  String
+  ownerUser    User     @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
+
+  // Canonical fields entered by the card owner
+  name         String
+  title        String?
+  company      String?
+  email        String?
+  phoneNumber  String?
+  website      String?
+  address      String?
+  instagram    String?
+  twitter      String?
+  linkedin     String?
+
+  // Optional: if you want Postgres-only image storage
+  imageMime    String?
+  imageBytes   Bytes?
+
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Contacts from other users linked to this canonical card
+  linkedContacts ContactCard[]
+
+  @@index([ownerUserId, isActive])
+  @@index([email])
+  @@index([company])
+}
+
+model ContactCard {
+  id              String   @id @default(uuid())
+  ownerUserId      String
+  ownerUser        User     @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
+
+  // Optional link to canonical owner profile card
+  profileCardId    String?
+  profileCard      ProfileCard? @relation(fields: [profileCardId], references: [id], onDelete: SetNull)
+
+  // Snapshot from scan/manual import at the time user saved it
+  source           ContactSource @default(SCAN)
+  scannedName      String
+  scannedTitle     String?
+  scannedCompany   String?
+  scannedEmail     String?
+  scannedPhone     String?
+  scannedWebsite   String?
+  scannedAddress   String?
+  scannedInstagram String?
+  scannedTwitter   String?
+  scannedLinkedin  String?
+  rawOcrText       String?
+
+  // Optional scanned image in Postgres
+  imageMime        String?
+  imageBytes       Bytes?
+
+  // Quality and sync tracking
+  matchConfidence  Float?
+  lastResolvedAt   DateTime?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  override         ContactOverride?
+
+  @@index([ownerUserId, createdAt])
+  @@index([profileCardId])
+  @@index([scannedEmail])
+  @@index([scannedCompany])
+}
+
+model ContactOverride {
+  id              String   @id @default(uuid())
+  contactCardId    String   @unique
+  contactCard      ContactCard @relation(fields: [contactCardId], references: [id], onDelete: Cascade)
+
+  // If present, this value wins for this user only
+  name             String?
+  title            String?
+  company          String?
+  email            String?
+  phoneNumber      String?
+  website          String?
+  address          String?
+  instagram        String?
+  twitter          String?
+  linkedin         String?
+
+  notes            String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}

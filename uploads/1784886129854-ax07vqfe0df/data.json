@@ -1,0 +1,35 @@
+{
+  "firstName": "Morgan",
+  "lastName": "Maxwell",
+  "title": "General Manager",
+  "company": "Liceria & Co.",
+  "department": null,
+  "email": "hello@reallygreatsite.com",
+  "phone": "+1234567890",
+  "mobile": null,
+  "website": "www.reallygreatsite.com",
+  "address": "123 Anywhere St.",
+  "city": "Any City",
+  "state": "ST",
+  "country": "USA",
+  "postalCode": "12345",
+  "linkedIn": null,
+  "twitter": null,
+  "instagram": null,
+  "facebook": null,
+  "github": null,
+  "notes": null,
+  "tags": [
+    "real estate"
+  ],
+  "colors": [
+    {
+      "hex": "#FFFFFF",
+      "name": "white"
+    },
+    {
+      "hex": "#F0E68C",
+      "name": "khaki"
+    }
+  ]
+}

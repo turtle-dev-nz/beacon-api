@@ -1,18 +1,30 @@
 {
-  "name": "card-monorepo",
+  "name": "card-api",
+  "version": "1.0.0",
   "private": true,
-  "workspaces": [
-    "apps/mobile",
-    "apps/api"
-  ],
+  "main": "src/index.js",
   "scripts": {
-    "start": "npm run start:mobile",
-    "dev": "npm run dev:mobile",
-    "dev:mobile": "npm --workspace @card/mobile run start --",
-    "dev:mobile:lan": "npm --workspace @card/mobile run start -- --host lan",
-    "dev:mobile:tunnel": "npm --workspace @card/mobile run start -- --host tunnel",
-    "dev:api": "npm run dev --workspace @card/api",
-    "start:mobile": "npm --workspace @card/mobile run start --",
-    "start:api": "npm run start --workspace @card/api"
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "seed": "node src/seed.js"
+  },
+  "dependencies": {
+    "@google/genai": "^2.13.0",
+    "@prisma/adapter-pg": "^7.9.0",
+    "@prisma/client": "^7.9.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^4.22.2",
+    "mssql": "^12.7.0",
+    "multer": "^2.2.0",
+    "openai": "^6.49.0",
+    "pg": "^8.22.0",
+    "prisma": "^7.9.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.1.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
   }
 }

@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "API",
+      "type": "shell",
+      "command": "npm start",
+      "group": "build",
+      "presentation": {
+        "panel": "new",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Cloudflare Tunnel",
+      "type": "shell",
+      "command": "cloudflared tunnel run card-api",
+      "group": "build",
+      "presentation": {
+        "panel": "new",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Start Everything",
+      "dependsOn": ["API", "Cloudflare Tunnel"],
+      "dependsOrder": "parallel",
+      "problemMatcher": []
+    }
+  ]
+}
